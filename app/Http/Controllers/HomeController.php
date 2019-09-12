@@ -39,11 +39,11 @@ class HomeController extends Controller
     public function registeredContestants(){
         $getAllRegisteredContestants = Contest::orderBy('id', 'DESC')->paginate(2);
         $getRef = Input::get('search_registered');
-        $getByPaystackReference = Contest::where('reference', 'LIKE', '%'.$getRef.'%')
-        ->orWhere('reference', 'LIKE', '%'.$getRef.'%')
+        $getByPaystackReference = Contest::where('pay_reference', 'LIKE', '%'.$getRef.'%')
+        ->orWhere('pay_reference', 'LIKE', '%'.$getRef.'%')
         ->orWhere('whatsApp_no', 'LIKE', '%'.$getRef.'%')
-        ->orWhere('first_name_one', 'LIKE', '%'.$getRef.'%')
-        ->orWhere('first_name_two', 'LIKE', '%'.$getRef.'%')
+        ->orWhere('first_name', 'LIKE', '%'.$getRef.'%')
+        ->orWhere('last_name', 'LIKE', '%'.$getRef.'%')
         ->orWhere('state_of_res', 'LIKE', '%'.$getRef.'%')
         ->orderBy('id', 'DESC')->paginate(2);
         if(count($getByPaystackReference) > 0){
@@ -59,7 +59,7 @@ class HomeController extends Controller
         $getAllContestants = Contest::orderBy('id', 'DESC')->paginate(2);
         $getMonth = Input::get('search_month');
         $getYear = Input::get('search_year');
-        $searchResults = Contest::where('anniversary_month', $getMonth)->where('contest_year', $getYear)->paginate(1);
+        $searchResults = Contest::where('birthmonth', $getMonth)->where('contest_year', $getYear)->paginate(1);
         if(count($searchResults) > 0){
         return view('admin.all-contestants', 
         compact('getAllContestants','searchResults'))

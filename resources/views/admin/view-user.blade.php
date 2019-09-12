@@ -74,19 +74,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
      <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-6">
-            <img src="{{asset('user_image/'.$viewCouple->couple_picture)}}"
+            <img src="{{asset('user_image/'.$viewCouple->contest_image)}}"
             alt="" class="img-rounded img-responsive" />
         </div>
         <div class="col-sm-6 col-md-6">
             <blockquote>
-            <p>{{ucfirst($viewCouple->first_name_one)}} {{ucfirst($viewCouple->last_name_one)}}, {{ucfirst($viewCouple->first_name_one)}} {{ucfirst($viewCouple->last_name_two)}}</p> 
+            <p>{{ucfirst($viewCouple->first_name)}} {{ucfirst($viewCouple->last_name)}}</p> 
                 <small><cite title="Source Title">{{$viewCouple->state_of_res}}, Nigeria.  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
             </blockquote>
             <p> <i class="glyphicon glyphicon-envelope"></i> {{$viewCouple->email}}
                 <br/>
-                 <i class="glyphicon glyphicon-globe"></i> {{$viewCouple->couple_type}}
-                <br /> 
-                <i class="glyphicon glyphicon-gift"></i> {{$viewCouple->anniversary_month}}
+                <i class="glyphicon glyphicon-gift"></i> {{$viewCouple->birthmonth}}
                 <br /> 
                 <i class="glyphicon glyphicon-phone"></i> {{$viewCouple->phone_no}} | WhatsApp: {{$viewCouple->whatsApp_no}}</p>
                 <br /> 
@@ -96,8 +94,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                <div class="col-md-12">
                <div class="row">
                 <div class="col-md-10 col-sm-6">
-                <a href="{{('/user_receipt/'.$viewCouple->receipt)}}" target="_blank">
-                <img src="{{asset('user_receipt/'.$viewCouple->receipt)}}" 
+                <a href="{{('/user_receipt/'.$viewCouple->payment_receipt)}}" target="_blank">
+                <img src="{{asset('user_receipt/'.$viewCouple->payment_receipt)}}" 
                 height="100" width="200" alt="" class="img-rounded img-responsive" /></a>
                 </div>
 

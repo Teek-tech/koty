@@ -38,40 +38,43 @@ class ContestController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'couple_picture' => 'image|mimes:jpg,png,jpeg|max:4000'
+            'contest_image' => 'image|mimes:jpg,png,jpeg|max:4000',
+            'payment_receipt' => 'image|mimes:jpg,png,jpeg|max:4000'
         ]);
         $registerUser =  new Contest();
-        $registerUser->first_name_one = $request->input('first_name_one');
-        $registerUser->last_name_one = $request->input('last_name_one');
-        $registerUser->first_name_two = $request->input('first_name_two');
-        $registerUser->last_name_two = $request->input('last_name_two');
+        $registerUser->first_name = $request->input('first_name');
+        $registerUser->last_name = $request->input('last_name');
         $registerUser->email = $request->input('email');
         $registerUser->phone_no = $request->input('phone_no');
         $registerUser->whatsApp_no = $request->input('whatsApp_no');
-        $registerUser->anniversary_date = $request->input('anniversary_date');
-        $registerUser->couple_type = $request->input('couple_type');
+        $registerUser->dob = $request->input('dob');
+        $registerUser->gender = $request->input('gender');
         $registerUser->state_of_res = $request->input('state_of_res');
-        $registerUser->anniversary_month = $request->input('anniversary_month');
-        //$registerUser->couple_picture = $request->input('couple_picture');
-        if ($request->hasFile('couple_picture')) {
-            $image = $request->file('couple_picture');
-            $postUserImg = 'couple_picture' . time() . '.' . $image->getClientOriginalExtension();
+        $registerUser->birthmonth = $request->input('birthmonth');
+        if ($request->hasFile('contest_image')) {
+            $image = $request->file('contest_image');
+            $postUserImg = 'contest_image' . time() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save(public_path('/user_image/' . $postUserImg));
-            $registerUser->couple_picture = $postUserImg;
+            $registerUser->contest_image = $postUserImg;
         }
         $registerUser->contest_fee = $request->input('contest_fee');
-        //$registerUser->receipt = $request->input('receipt');
-        if ($request->hasFile('receipt')) {
-            $image = $request->file('receipt');
-            $postUserReceipt =  'receipt' . time() . '.' . $image->getClientOriginalExtension();
+        if ($request->hasFile('payment_receipt')) {
+            $image = $request->file('payment_receipt');
+            $postUserReceipt =  'payment_receipt' . time() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save(public_path('/user_receipt/' . $postUserReceipt));
-            $registerUser->receipt = $postUserReceipt;
+            $registerUser->payment_receipt = $postUserReceipt;
         }
-        $registerUser->reference = $request->input('reference');
+        $registerUser->pay_reference = $request->input('pay_reference');
         $registerUser->referrer = $request->input('referrer'); 
         $registerUser->contest_year = date('Y');
-        $registerUser->save();
-        return back()->with('success', 'Your registration was successful.');
+        if($registerUser->pay_reference ===null){
+            return back()->with('error', 'Something went wrong, kindly try again!.');
+        }else{
+            $registerUser->status = 1;
+            $registerUser->save();
+            return back()->with('success', 'Your registration was successful.');
+
+        }
     }
 
     /**

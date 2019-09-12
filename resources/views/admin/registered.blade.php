@@ -84,13 +84,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			  @foreach($getAllRegisteredContestants as $getUser)
                 <tr>
                   <td>{{$sn++}}</td>
-                  <td><b>{{ucfirst($getUser->first_name_one)}} {{ucfirst($getUser->last_name_one)}}, {{ucfirst($getUser->first_name_two)}} {{ucfirst($getUser->last_name_two)}}</b></td>
-                  <td>{{ucfirst($getUser->anniversary_month)}}</td>
+                  <td><b>{{ucfirst($getUser->first_name)}} {{ucfirst($getUser->last_name)}}</b></td>
+                  <td>{{ucfirst($getUser->birthmonth)}}</td>
                   <td>{{ucfirst($getUser->state_of_res)}}</td>
                   <td>{{ucfirst($getUser->whatsApp_no)}}</td>
                   <td>{{ucfirst($getUser->phone_no)}}</td>
-                  <td><a href="{{('/user_image/'.$getUser->couple_picture)}}" target="_blank">
-				  <img src="{{asset('user_image/'.$getUser->couple_picture)}}" height='30' width='30' style="border-radius: 50%;"></a></td>
+                  <td><a href="{{('/user_image/'.$getUser->contest_image)}}" target="_blank">
+				  <img src="{{asset('user_image/'.$getUser->contest_image)}}" height='30' width='30' style="border-radius: 50%;"></a></td>
 				 @if(is_null($getUser->reference))
 				  <td>No Ref Found</td>
 				  @else
@@ -134,13 +134,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			  @foreach($getByPaystackReference as $getUser)
                 <tr>
                 <td>{{$sn++}}</td>
-                  <td><b>{{ucfirst($getUser->first_name_one)}} {{ucfirst($getUser->last_name_one)}}, {{ucfirst($getUser->first_name_two)}} {{ucfirst($getUser->last_name_two)}}</b></td>
-                  <td>{{ucfirst($getUser->anniversary_month)}}</td>
+                  <td><b>{{ucfirst($getUser->first_name)}} {{ucfirst($getUser->last_name)}}</b></td>
+                  <td>{{ucfirst($getUser->birthmonth)}}</td>
                   <td>{{ucfirst($getUser->state_of_res)}}</td>
                   <td>{{ucfirst($getUser->whatsApp_no)}}</td>
                   <td>{{ucfirst($getUser->phone_no)}}</td>
-                  <td><a href="{{('/user_image/'.$getUser->couple_picture)}}" target="_blank">
-				  <img src="{{asset('user_image/'.$getUser->couple_picture)}}" height='30' width='30' style="border-radius: 50%;"></a></td>
+                  <td><a href="{{('/user_image/'.$getUser->contest_image)}}" target="_blank">
+				  <img src="{{asset('user_image/'.$getUser->contest_image)}}" height='30' width='30' style="border-radius: 50%;"></a></td>
 				 @if(is_null($getUser->reference))
 				  <td>No Ref Found</td>
 				  @else
@@ -149,7 +149,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				  @if(is_null($getUser->receipt))
 				  <td>No Receipt Found</td>
 				  @else
-				  <td>{{ucfirst($getUser->receipt)}}</td>
+          <td><a href="{{('/user_receipt/'.$getUser->payment_receipt)}}" target="_blank">
+				  <img src="{{asset('user_receipt/'.$getUser->payment_receipt)}}" height='30' width='30' style="border-radius: 50%;"></a></td>
 				  @endif
 				  @if($getUser->status=='0')
 				  <td><button class="btn btn-danger badge" type="button">Pending</button></td>

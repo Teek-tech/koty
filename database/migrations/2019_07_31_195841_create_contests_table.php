@@ -15,23 +15,21 @@ class CreateContestsTable extends Migration
     {
         Schema::create('contests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('first_name_one');
-            $table->string('last_name_one');
-            $table->string('first_name_two');
-            $table->string('last_name_two');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->string('phone_no');
             $table->string('whatsApp_no');
-            $table->date('anniversary_date');
-            $table->string('couple_type');
+            $table->date('dob');
+            $table->string('birthmonth');
+            $table->string('contest_year');
+            $table->string('gender');
             $table->string('state_of_res');
-            $table->string('anniversary_month');
-            $table->integer('contest_year')->nullable();
-            $table->string('couple_picture');
-            $table->string('referrer')->nullable();
+            $table->string('contest_image');
             $table->integer('contest_fee');
-            $table->string('receipt')->nullable();
-            $table->string('reference')->nullable();
+            $table->string('payment_receipt')->nullable();
+            $table->string('pay_reference')->nullable();
+            $table->string('referrer')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });
