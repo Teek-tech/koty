@@ -67,14 +67,14 @@ class ContestController extends Controller
         $registerUser->pay_reference = $request->input('pay_reference');
         $registerUser->referrer = $request->input('referrer'); 
         $registerUser->contest_year = date('Y');
-        if($registerUser->pay_reference ===null){
-            return back()->with('error', 'Something went wrong, kindly try again!.');
-        }else{
+        // if($registerUser->pay_reference ===null){
+        //     return back()->with('success', 'Something went wrong, kindly try again!.');
+        // }else{
             $registerUser->status = 1;
             $registerUser->save();
             return back()->with('success', 'Your registration was successful.');
 
-        }
+        //}
     }
 
     /**

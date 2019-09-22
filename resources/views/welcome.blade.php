@@ -242,7 +242,7 @@
                                         </div>
                                         <div class="form-group">
                                         <label for="">Upload Payment Receipt [Max: 4mb]</label>
-                                            <input type="file" name="payment_receipt" class="form-control" />
+                                            <input type="file" id="reg_with_receipt" name="payment_receipt" class="form-control" />
                                         </div>
                                         <div class="form-group">
                                             <select class="form-control" name="referrer" required>
@@ -263,7 +263,8 @@
                                         </div>
                                         <input type="text" id="getFee" name="contest_fee" value="5000"/>
                                         <input type="text" name="pay_reference" value="{{ old('reference') }}" id="refcode"/>
-                                    <button type="button" onclick="payWithPaystack()" class="btnRegister">Register</button>
+                                    <button type="button" id="btn_with_paystack" onclick="payWithPaystack()" class="btnRegister">Register</button>
+                                    <button type="submit" id="btn_with_receipt" class="btnRegister">Register with Receipt</button>
                                     </div>
                                 </div>
                                 
@@ -282,4 +283,20 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>
+<script>
+$(document).ready(function(){
+    $("#btn_with_receipt").hide();
+$('#reg_with_receipt').change(function(){
+    var checkFile = $('#reg_with_receipt'); //this.files.length;
+    if(checkFile !='' ){
+        $("#btn_with_paystack").hide();
+        $("#btn_with_receipt").show();
+    }else{
+        $("#btn_with_paystack").show();
+        $("#btn_with_receipt").hide();
+    }
+ 
+});
+});
+</script>
 </html>
